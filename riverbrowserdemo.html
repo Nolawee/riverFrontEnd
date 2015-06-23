@@ -1,0 +1,92 @@
+<html>
+	<head>
+		<title>River browser demo</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="http://fargo.io/code/jquery-1.9.1.min.js"></script>
+		<link href="http://fargo.io/code/bootstrap.css" rel="stylesheet">
+		<script src="http://fargo.io/code/bootstrap.min.js"></script>
+		<script src="riverbrowser.js"></script>
+		<script>
+			function startup () {
+				var whenstart = new Date ();
+				console.log ("startup");
+				httpGetRiver ("frozenriver.js", "idRiverDisplay", function () {
+					console.log ("startup: httpGetRiver took approx " + secondsSince (whenstart) + " secs.");
+					});
+				}
+			</script>
+		<style>
+			body {
+				font-family: Ubuntu;
+				font-size: 18px;
+				background-color: whitesmoke;
+				}
+			.divTopPageMessage {
+				margin-top: 45px;
+				}
+			.divPageBody {
+				width: 600px;
+				margin-top: 45px;
+				margin-left: auto;
+				margin-right: auto;
+				background-color: white;
+				border: 1px solid silver;
+				}
+			.divFeedTitle, .spFeedUpdateTime {
+				background-color: white;
+				}
+			.divPageBody p {
+				font-family: "Georgia";
+				font-size: 18px;
+				line-height: 140%;
+				}
+			.divRiverContainer {
+				}
+			</style>
+		</head>
+		<body>
+	<!--
+		<div class="divTopPageMessage">
+			<center>
+				<p>This is a demo app for the <a href="https://github.com/scripting/riverBrowser/">riverBrowser</a> toolkit.</p>
+				</center>
+			</div>
+		<div class="divPageBody">
+			<div class="divRiverContainer">
+				<div class="divRiverDisplay" id="idRiverDisplay">
+					</div>
+				</div>
+			</div>
+		<script>
+			$(document).ready (function () {
+				startup ();
+				});
+			</script>
+			-->
+
+			<div class = "divRiversBody">
+				<header id="header">
+					<hgroup>
+						<h1 id="idRiverTitle">Markit</h1>
+						<h2 id="idRiverDescription"></h2>
+					<hgroup>
+				</header>
+				<div class="divRiverContainer">
+					<div class="divRiversInTabsPage">
+						<div id="idTabs" style="visibility: visible;"></div>
+						<ul id="idTabList" class="nav nav-tabs">
+							::before
+							<li class="active" id="apple">
+								<a title data-toggle="tab" onclick="switchPanel ("apple")">apple</a>
+							</li>
+							<li id="CNBC">
+								<a title data-toggle="tab" onclick="switchPanel ("CNBC")">CNBC</a>
+							</li>
+						</ul>
+
+					</div>
+				</div>
+			</div>
+		</body>
+	</html>
