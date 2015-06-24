@@ -68,7 +68,7 @@
 			<div class = "divRiversBody">
 				<header id="header">
 					<hgroup>
-						<h1 id="idRiverTitle">Markit</h1>
+						<h1 id="idRiverTitle">MarkitNews</h1>
 						<h2 id="idRiverDescription"></h2>
 					<hgroup>
 				</header>
@@ -76,14 +76,97 @@
 					<div class="divRiversInTabsPage">
 						<div id="idTabs" style="visibility: visible;"></div>
 						<ul id="idTabList" class="nav nav-tabs">
-							::before
+							<!--::before-->
 							<li class="active" id="apple">
 								<a title data-toggle="tab" onclick="switchPanel ("apple")">apple</a>
 							</li>
-							<li id="CNBC">
-								<a title data-toggle="tab" onclick="switchPanel ("CNBC")">CNBC</a>
+							<li id="cnbc">
+								<a title data-toggle="tab" onclick="switchPanel ("cnbc")">cnbc</a>
+							</li>
+							<li id="cnn">
+								<a title data-toggle="tab" onclick="switchPanel ("cnn")">cnn</a>
+							</li>
+							<li id="nyt">
+								<a title data-toggle="tab" onclick="switchPanel ("nyt")">nyt</a>
 							</li>
 						</ul>
+					</div>
+					<div class="divRiverInTab">
+						<div id = "stream">
+							<div class="info">
+								<a id="display" href="#">
+									"Switch to compact view"
+								</a>
+								<p class = "updated">
+									"Updated "
+									<time datetime="2015-06-24T16:07:36Z">10:07:36 AM; 24 Jun</time>
+								</p>
+							</div>
+							<div class="section">
+								<div class="header"></div>
+							</div>
+						</div>
+						<footer id="footer">
+							<p>
+								"The design and implementation of the first beautiful River2 template was a community project."
+								<a href="http://beautriver1.blorkmark.com/">Credits</a>
+								"."
+							</p>
+						</footer>
+						<script>
+							var jsonFeed = 'http://static.scripting.com/river3/rivers/fargojs?callback=';
+							var jsonCallback = 'onGetRiverStream';
+						</script>
+						<script id= "template" type="text/x-jquery-tmpl">
+											<div class="info">
+												<a id="diplay" href="#">Switch to compact view</a></li>
+												<p class="updated">Updated <time datetime="${dateFormat(metadata.whenGMT, 'isoUtcDateTime")}>${dateFormat(metadata.whenGMT, 'timeDate')}</time></p>
+												</div>
+											{{each(f, feed) updatedFeeds.updatedFeed}}
+											<div class="section">
+												<div class="header">
+													<h2>
+														{{if feed.websiteUrl}}<a href="${feed.websiteUrl}">{{/if}}<img class="icon" src="${getFacicon(feed.websiteUrl)}" alt="">{{if feed.websiteUrl}}</a>{{/if}}
+														{{if feed.websiteUrl}}<a href="${feed.websiteUrl">{{/if}}${feed.feedTitle}{{if feed.websiteUrl}}</a>{{/if}}
+													</h2>
+													<span class="time">${dateFormat(feed.whenLastUpdate, 'timeDate')}</span>
+													</div>
+												{{each(i,item) feed.item}}
+												<div class="article">
+													<div class="header">
+														<h3<a href="{{if item.permaLink}}${item.permaLink}{{else}}${item.link}{{/if}};" rel="external">{{if item.title}}${item.title}{{else}}${item.body}{{/if}}</a></h3>
+														</div>
+													{{if item.title}}
+													{{if item.body}}
+													<div class="description">
+														{{each(t,thumbnail) item.thumbnail}}
+														<img class="thumbnail" src="${thumbnail.url" width="${thumbnail.width}" height="${thumbnail.height}" alt="">
+														{{/each}}
+														${getText(item.body)}
+													</div>
+													{{/if}}
+													{{/if}}
+													<div class="footer">
+														<span class="time"${timeDifference(item.pubDate)}</span
+														<ul class="actions">
+															{{if item.comments}}
+															<li><a href="${item.comments}" rel"external nofollow" target="_blank">Comment</a></li>
+															{{/if}}
+															{{each(e,enclosure) item.enclosure}}
+															<li class="enclosure ${getEnclosureType(enclosure.type)}"><a href="${enclosure.url}">Download enclosure (${enclosure.type}, (${getEnclosureSize(enclosure.length)})</a></li>
+																{{/each}}
+														</ul>
+													</div>
+												</div>
+												 {{/each}}
+											</div>
+											{{/each}}
+						</script>
+						<script>
+											$(document).ready (function (){
+												startup ();
+											});
+						</script>
 
 					</div>
 				</div>
